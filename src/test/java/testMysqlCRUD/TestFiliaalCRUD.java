@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import model.KlantPaar;
 import mysqlCRUD.FiliaalCRUD;
@@ -36,14 +37,26 @@ public class TestFiliaalCRUD {
 	}
 	
 	@Test
-	public void testFindFiliaalDistance(){
+	public void testFindFiliaalDistanceNull(){
 		int filiaalDistance = FiliaalCRUD.findFiliaalDistance(conn, mockData.mockKlanten.get(2), mockData.mockKlanten.get(3));		
 		assertEquals(filiaalDistance, 0);
 	}
 	
 	@Test
-	public void testFindFiliaalDistance2(){
+	public void testFindFiliaalDistanceOne(){
 		int filiaalDistance = FiliaalCRUD.findFiliaalDistance(conn, mockData.mockKlanten.get(3), mockData.mockKlanten.get(5));		
+		assertEquals(filiaalDistance, 1);
+	}
+	
+	@Test
+	public void testFindFiliaalDistance2Null(){
+		int filiaalDistance = FiliaalCRUD.findFiliaalDistance2(conn, mockData.mockKlanten.get(2), mockData.mockKlanten.get(3));		
+		assertEquals(filiaalDistance, 0);
+	}
+	
+	@Test
+	public void testFindFiliaalDistance2One(){
+		int filiaalDistance = FiliaalCRUD.findFiliaalDistance2(conn, mockData.mockKlanten.get(3), mockData.mockKlanten.get(5));		
 		assertEquals(filiaalDistance, 1);
 	}
 }
